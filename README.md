@@ -19,7 +19,7 @@ TSSeer 可视分析系统 2.0
 
 #### 交互流程展示(版本 2demo)
 
-![20220625153551](https://github.com/bmwanm123/TSSeer/blob/main/TSSeerSystem/static/data/image/TSSystem2.0.gif)
+![20220625153551](https://github.com/bmwanm123/TSSeer2.0/blob/main/videodemo/TSSystem2.0.gif)
 
 <!-- ROADMAP -->
 
