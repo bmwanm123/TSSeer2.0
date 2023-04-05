@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+
+<body>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"
+    charset="utf-8"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script type="text/javascript">
+
+    var fills = ['#00779C', '#00465C', '#54B8B1', '#377874', '#455560', '#7C99AC', '#F5CC49', '#F5CC9C', '#A8353D', '#682126'],
+      h = 150,
+      w = 800,
+      numX = 40,
+      numY = 30,
+      speed = 0.02,
+      torsion = 0.2,
+      x = d3.scale.linear().range([10, w - 10]),
+      y = d3.scale.linear().range([h - 10, 10]),
+      z = d3.scale.linear().range([10, 2]);
+
+    var svg = d3.select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h)
+
+    svg.append("rect")
+      .attr("width", w)
+      .attr("height", h)
+      .attr("fill", "white")
+      .on("mousemove", function () {
+        console.log(d3.mouse(this)[0])
+        torsion = 0.5 * d3.mouse(this)[0] / w;
+      });
+
+    var container = svg.append("g");
+
+    var counter = 0;
+    function generateData() {
+      counter++;
+      var data = d3.range(numX).map(function (d) {
+        var t = d * torsion - speed * counter;
+        return [
+          {
+            x: d,
+            y: Math.cos(t),
+            z: Math.sin(t)
+          },
+          {
+            x: d,
+            y: Math.cos(t - Math.PI),
+            z: Math.sin(t - Math.PI)
+          }
+        ]
+      });
+
+      var flat = _.flatten(data);
+      x.domain(d3.extent(flat, function (d) { return d.x }));
+      y.domain(d3.extent(flat, function (d) { return d.y }));
+      z.domain(d3.extent(flat, function (d) { return d.z }));
+
+      return data
+    }
+
+    function draw() {
+      var cont = container.selectAll("g").data(generateData());
+      cont.exit().remove();
+
+      var enter = cont.enter()
+        .append("g")
+        .each(function (d, index) {
+          console.log(d)
+
+          d3.select(this)
+            .selectAll("circle")
+            .data(d)
+            .enter()
+            .append("circle")
+            .attr("fill", "black");
+
+          d3.select(this).append('line')
+            .attr("stroke", function (d, i) { return fills[index % 7] })
+            .attr("stroke-width", 2)
+        });
+
+      cont.each(function (d, index) {
+
+        var inverted = (d[0].y < d[1].y) ? 1 : -1;
+
+        d3.select(this)
+          .selectAll("circle")
+          .data(d)
+          .attr("cx", function (d) { return x(d.x) })
+          .attr("cy", function (d) { return y(d.y) })
+          .attr("r", function (d) { return z(d.z) })
+          .attr("fill-opacity", function (d) { return z(d.z) / 10 })
+          .attr("fill", function (d, i) { return fills[index % 7]; });
+
+        d3.select(this)
+          .select('line')
+          .attr("x2", x(d[0].x))
+          .attr("x1", x(d[0].x))
+          .attr("y2", y(d[0].y) - inverted * z(d[0].z))
+          .attr("y1", y(d[1].y) + inverted * z(d[1].z))
+          .attr("opacity", 0.3 * inverted * (d[1].y - d[0].y))
+      })
+    }
+
+    setInterval(draw, 25);
+  </script>
+</body>
+
+</html>

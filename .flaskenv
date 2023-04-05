@@ -1,0 +1,2 @@
+FLASK_APP=TSSeerSystem
+FLASK_ENV=development

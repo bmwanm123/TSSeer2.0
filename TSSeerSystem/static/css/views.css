@@ -1,0 +1,603 @@
+/* 所有视图的css样式 */
+html {
+  font-size: 10px;
+  height: 99vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: "sans-serif";
+}
+body{
+  height: 99%;
+  width: 99%;
+}
+.views {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.ViewTitle {
+  width: 100%;
+  height: 6%;
+}
+.viewsbody {
+  width: 100%;
+  height: 94%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5%;
+}
+.LevelView {
+  width: 29%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 0.7%;
+}
+.TSBox {
+  width: 54%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.SentenceView {
+  width: 100%;
+  height: 42%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.7%;
+}
+.DetailView {
+  width: 100%;
+  height: 57%;
+  display: flex;
+  flex-direction: column;
+}
+.VideoView {
+  width: 15%;
+  height: 100%;
+  margin-left: 0.7%;
+  display: flex;
+  flex-direction: column;
+}
+.LevelTitle {
+  width: 100%;
+  height: 4.5%;
+}
+.Levelbody {
+  width: 100%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+}
+.VideoTitle {
+  width: 100%;
+  height: 4.5%;
+}
+.Videobody {
+  width: 100%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+}
+#videomain{
+  height: 30%;
+}
+.slide{
+  height: 24%;
+}
+.Shot{
+  height: 46%;
+  display: flex;
+  flex-direction: column;
+}
+.pic1 {
+  width: 100%;
+  height: 47%;
+  padding: 3%;
+}
+.pic2 {
+  width: 100%;
+  height: 47%;
+  padding: 3%;
+}
+.SentenceTitle {
+  width: 100%;
+  height: 10%;
+}
+.Sentencebody {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+.DetailTitle {
+  width: 100%;
+  height: 8%;
+}
+.Detailbody {
+  width: 100%;
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+}
+.Teacher{
+  height: 20%;
+}
+.Text{
+  height: 15%;
+}
+.Stu-up{
+  height: 25%;
+}
+.Stu-mid{
+  height: 15%;
+}
+.Stu-down{
+  height: 25%;
+}
+
+.rv-toolbar1 {
+  height: 99%;
+  width:100%;
+  border-bottom: solid #999999 1px;
+  border-radius: 0.5rem;
+  background: #2c2c2c;
+  opacity: 0.95;
+  justify-content: space-between;
+}
+.rv-toolbar {
+  height: 99%;
+  width:100%;
+  border-bottom: solid #999999 1px;
+  border-radius: 0.5rem;
+  background: #F7F7F7;
+  justify-content: space-between;
+}
+.titleName {
+  color: #fff;
+  font-family: "Microsoft YaHei UI";
+  text-align: center;
+  line-height: 100%;
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 1%;
+}
+.viewName {
+  color: #5C6A76;
+  font-family: "Microsoft YaHei UI";
+  line-height: 3rem;
+  font-weight: bold;
+  padding-top: 1%;
+  padding-left: 4%;
+  font-size: 20px;
+}
+.viewName1 {
+  color: #5C6A76;
+  font-family: "Microsoft YaHei UI";
+  font-weight: bold;
+  padding-top: 1%;
+  padding-left: 4%;
+  font-size: 20px;
+}
+.viewName2 {
+  color: #5C6A76;
+  font-family: "Microsoft YaHei UI";
+  font-weight: bold;
+  padding-top: 1%;
+  padding-left: 4%;
+  font-size: 20px;
+}
+
+/* 层级视图样式 */
+.VideoFilter {
+  width: 99%;
+  height: 15%;
+  margin: 0.5%;
+  display: flex;
+  flex-direction: column;
+}
+.PatternSelect {
+  width: 99%;
+  height: 13%;
+  margin: 0.5%;
+  display: flex;
+  flex-direction: row;
+}
+.VideoInfo {
+  width: 99%;
+  height: 40%;
+  margin: 0.5%;
+  z-index: 2;
+}
+.SingleShow {
+  width: 99%;
+  height: 30%;
+  margin: 0.5%;
+  display: flex;
+  flex-direction: row;
+  z-index: 2;
+}
+.SingleShow1 {
+  width: 99%;
+  height: 30%;
+  margin: 0.5%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+.BehaviorT{
+  width: 100%;
+  height: 15%;
+}
+.RC{
+  height: 85%;
+  display: flex;
+  flex-direction: row;
+}
+.RL{
+  width: 50%;
+}
+.CR{
+  width: 50%;
+}
+.StuShow{
+  width: 100%;
+  height: 100%;
+}
+.RiverS {
+  width: 100%;
+  height: 100%;
+}
+.filter-top{
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+}
+.filter-bottom{
+  width: 100%;
+  height: 70%;
+}
+.topname{
+  width: 40%;
+  color: rgba(0, 0, 0, 0.85);
+    font-weight: 600;
+    font-size: 16px;
+    padding-top: 1%;
+    padding-left: 2%;
+}
+.topbox{
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+}
+.boxname{
+  width: 20%;
+  border: solid #999999 1px;
+  background: #F7F7F7;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 400;
+  font-size: 15px;
+  padding-left: 2%;
+  padding-top: 0.8%;
+  border-radius: 0.3rem;
+  margin-left: 8%;
+  margin-bottom: 2%;
+}
+#topselect{
+  width: 70%;
+}
+
+/* level 视图下拉框 */
+.el-input__icon {
+  line-height: 27px!important;
+}
+.el-input__inner {
+  height: 31px !important;
+  line-height: 31px!important;
+}
+.el-input-number{
+  width: 99% !important;
+  line-height: 33px !important;
+    border-bottom: solid #999999 1px;
+    border-right: solid #999999 1px;
+}
+.el-input-number.is-controls-right .el-input-number__decrease, .el-input-number.is-controls-right .el-input-number__increase {
+  margin-top: 2% !important;
+  margin-bottom: 1% !important;
+  line-height: 6px !important;
+}
+.el-select {
+  border-top: solid #999999 1px;
+  border-right: solid #999999 1px;
+}
+.filtext{
+  border: 1px #2c2c2c;
+}
+
+.patternleft{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.patternright{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.left-up{
+  margin-top: 1%;
+  height: 33%;
+  display: flex;
+  flex-direction: row;
+}
+.left-down{
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+}
+.right-up{
+  margin-top: 1%;
+  height: 33%;
+  display: flex;
+  flex-direction: row;
+}
+.right-down{
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+}
+.Name {
+  width: 30%;
+  margin-left: 3%;
+  border: solid #999999 1px;
+  background: #F7F7F7;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 400;
+  font-size: 15px;
+  margin-bottom: 1%;
+  border-radius: 0.3rem;
+  text-align: center;
+    padding-top: 0.8%;
+}
+#selectdown{
+  width: 62%;
+  margin-right: 5%;
+}
+.Name1 {
+  width: 30%;
+  margin-left: 5%;
+  border: solid #999999 1px;
+  background: #F7F7F7;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 400;
+  font-size: 15px;
+  margin-bottom: 1%;
+  border-radius: 0.3rem;
+  text-align: center;
+    padding-top: 0.8%;
+}
+#selectdown1{
+  width: 62%;
+  margin-right: 3%;
+}
+.down-left{
+  width: 24%;
+  margin-left: 3%;
+  text-align: center;
+  border: solid #999999 1px;
+  background: #F7F7F7;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 400;
+  font-size: 20px;
+  border-radius: 0.3rem;
+  padding-top: 2%;
+  height: 92%;
+}
+.down-middle{
+  width: 26%;
+  display: flex;
+  flex-direction: column;
+  height: 104%;
+}
+.down-right{
+  width: 42%;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+}
+.down-left1{
+  width: 24%;
+  margin-left: 5%;
+  text-align: center;
+  border: solid #999999 1px;
+  background: #F7F7F7;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 400;
+  font-size: 20px;
+  border-radius: 0.3rem;
+  padding-top: 2%;
+  height: 92%;
+}
+.down-middle1{
+  width: 26%;
+  display: flex;
+  flex-direction: column;
+  height: 104%;
+}
+.down-right1{
+  width: 42%;
+  margin-right: 3%;
+  display: flex;
+  flex-direction: column;
+  border-top: solid #999999 1px;
+  border-right: solid #999999 1px;
+  border-bottom: solid #999999 1px;
+  height: 100%;
+}
+.textinfo{
+  height: 50%;
+  text-align: center;
+  border-top: solid #999999 1px;
+  border-left: solid #999999 0.5px;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+}
+.textinfo1{
+  height: 50%;
+  text-align: center;
+  border-bottom: solid #999999 1px;
+  border-left: solid #999999 0.5px;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+#xyselect{
+  height: 50%;
+}
+#xyselect1{
+  height: 50%;
+}
+#xyselect2{
+  height: 50%;
+}
+#xyselect3{
+  height: 47%;
+  margin-top: 1%;
+}
+.singlebox{
+  position: absolute;
+  width: 300px;
+  height: 180px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.single-left{
+  width: 13%;
+}
+.single-middle{
+  width: 74%;
+  height: 100%;
+  overflow-x: scroll;
+}
+.single-right{
+  width: 13%;
+} 
+.TemCircle{
+  position: relative;
+  width: 528px;
+  height: 579px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.CircleShow{
+  width: 28%;
+  height: 61%;
+  /* display: none; */
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  top: 38%;
+    left: 10px;
+}
+.TSCircle-ALL{
+  opacity: 1;
+  /* position: absolute; */
+  /* z-index: 2; */
+}
+.TSRiver-ALL{
+  opacity: 0;
+  /* position: absolute; */
+  /* z-index: 2; */
+}
+#circle-up{
+  height: 7%;
+  display: flex;
+  flex-direction: row;
+}
+.circle-down{
+  height: 93%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+#cup-left{
+  width: 67%;
+}
+.Divider{
+  width: 25%;
+}
+.closeicon{
+  width: 8%;
+  font-size: 32px;
+  text-align: right;
+}
+.circle-down{
+  height: 85%;
+}
+/* 弹框中的单选框 */
+.el-radio-button__inner, .el-radio-group {
+  padding-left: 0%;
+  padding-top: 2%;
+}
+.el-radio {
+  margin-right: 10px !important;
+}
+.wordcloudbox{
+  position: absolute;
+  width: 300px;
+  height: 180px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.StudentCluster{
+  width: 35%;
+  height: 50%;
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  top: 12%;
+  left: 34%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+.Cluster-up{
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+}
+.Cluster-down{
+  height: 85%;
+}
+#fillter-left{
+  width: 92%;
+}
+#fillter-right{
+  width: 8%;
+  font-size: 32px;
+  text-align: right;
+}
+.up-DNA{
+  height: 73%;
+}
+.down-ring{
+  height: 27%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+#studentGaugeContainer {
+  width: 100%;
+  height: 100%;
+}
+.el-radio__label {
+  padding-left: 0px !important;
+}

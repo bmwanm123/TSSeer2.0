@@ -1,0 +1,17 @@
+{
+  "configurations": [
+    {
+      "name": "Python: File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "justMyCode": true,
+      "env": {"FLASK_APP": "${workspaceFolder}/app.py"},
+      "args": [
+        "run",
+        "--debugger",
+        "--reload"
+      ]
+    }
+  ]
+}

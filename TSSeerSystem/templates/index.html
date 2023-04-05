@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TSSeer</title>
+  <link rel="stylesheet" href="../static/css/views.css" />
+
+  <!--引入 element-ui 的样式，-->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <!-- 必须先引入vue，  后使用element-ui -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <!-- 引入element 的组件库-->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+  <div class="views">
+    <div class="ViewTitle">
+      <div class="rv-toolbar1">
+        <div class="titleName">TSSeer: Visual Analysis of The Correlation between Teachers' Multimodal Emotions and
+          Students' Learning Behaviors in Massive Open Online Courses </div>
+      </div>
+    </div>
+
+    <!-- 所有视图 -->
+    <div class="viewsbody">
+      <!-- video层级概览视图 -->
+      <div class="LevelView">
+        <div class="LevelTitle">
+          <div class="rv-toolbar">
+            <div class="viewName">Level View</div>
+          </div>
+        </div>
+        <div class="Levelbody">
+          <div class="VideoFilter">
+            <div class="filter-top">
+              <div class="topname">Video Setting</div>
+              <div class="topbox">
+                <div class="boxname"> <i class="el-icon-setting"></i>filter</div>
+                <div id="topselect">
+                  <el-select v-model="value" placeholder="请选择" @change="selectFilter">
+                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                  </el-select>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="filter-bottom">
+              <svg class="LVLengend"></svg>
+            </div>
+          </div>
+          <div class="PatternSelect">
+            <div class="patternleft">
+              <div class="left-up">
+                <div class="Name"><i class="el-icon-s-platform"></i>Courses</div>
+                <div id="selectdown">
+                  <el-select v-model="value" placeholder="请选择" @change="selectFilter">
+                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                  </el-select>
+                </div>
+              </div>
+              <div class="left-down">
+                <div class="down-left"><i class="el-icon-s-unfold"></i>X-axis</div>
+                <div class="down-middle">
+                  <div class="textinfo">value</div>
+                  <div class="textinfo1">number</div>
+                </div>
+                <div class="down-right">
+                  <div id="xyselect">
+                    <el-select v-model="value" placeholder="请选择" @change="selectFilter">
+                      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </div>
+                  <div id="xyselect1">
+                    <!-- <el-input v-model="input" placeholder="请输入内容"></el-input> -->
+                    <el-input-number v-model="num" controls-position="right" @change="handleChange()" :min="1"
+                      :max="10">
+                    </el-input-number>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="patternright">
+              <div class="right-up">
+                <div class="Name1"><i class="el-icon-s-data"></i>Type</div>
+                <div id="selectdown1">
+                  <el-select v-model="value" placeholder="请选择" @change="selectFilter">
+                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                  </el-select>
+                </div>
+              </div>
+              <div class="right-down">
+                <div class="down-left1"><i class="el-icon-s-unfold" style="transform: rotate(90deg);"></i>Y-axis</div>
+                <div class="down-middle1">
+                  <div class="textinfo">value</div>
+                  <div class="textinfo1">XYInfo</div>
+                </div>
+                <div class="down-right1">
+                  <div id="xyselect2">
+                    <el-select v-model="value" placeholder="请选择" @change="selectFilter">
+                      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </div>
+                  <div id="xyselect3">
+                    <el-input placeholder="VideoInfo" v-model="input" :disabled="true">
+                    </el-input>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="VideoInfo">
+            <svg class="LV-ALL"></svg>
+          </div>
+          <!-- <div class="SingleShow">
+            <div class="single-left">
+              <svg class="LV-box-L"></svg>
+            </div>
+            <div class="single-middle">
+              <svg class="LV-box-M"></svg>
+            </div>
+            <div class="single-right">
+              <svg class="LV-box-R"></svg>
+            </div>
+          </div> -->
+          <div class="SingleShow1">
+            <div class="BehaviorT">
+              <div class="rv-toolbar">
+                <div class="viewName">Learning behavior View</div>
+              </div>
+            </div>
+            <div class="RC">
+              <div class="RL">
+                <svg class="StuShow"></svg>
+              </div>
+              <div class="CR">
+                <svg class="RiverS"></svg>
+              </div>
+            </div>
+
+          </div>
+          <div class="CircleShow">
+            <div id="circle-up">
+              <div id="cup-left">
+                <el-radio-group v-model="radio" @change="XSelect">
+                  <el-radio :label="3">Start Stage</el-radio>
+                  <el-radio :label="6">Interim Stage</el-radio>
+                  <el-radio :label="9">Closing Stage</el-radio>
+                </el-radio-group>
+              </div>
+              <div class="Divider">
+                <svg class="Tab"></svg>
+              </div>
+              <div class="closeicon"><i class="el-icon-circle-close" onclick="levelV.method.closeBOX()"></i>
+              </div>
+            </div>
+            <div class="circle-down">
+              <svg class="TSCircle-ALL"></svg>
+              <svg class="TSRiver-ALL"></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 中间部分 -->
+      <div class="TSBox">
+        <!-- 句子视图 -->
+        <div class="SentenceView">
+          <div class="SentenceTitle">
+            <div class="rv-toolbar">
+              <div class="viewName1">Correlation View</div>
+            </div>
+          </div>
+          <div class="Sentencebody">
+            <div class="up-DNA">
+              <svg class="STVShow"></svg>
+            </div>
+            <div class="down-ring">
+              <svg class="SRing"></svg>
+            </div>
+          </div>
+          <div class="StudentCluster">
+            <div class="Cluster-up">
+              <div id="fillter-left">
+                <el-radio-group v-model="radio" @change="XSelect">
+                  <el-radio :label="3">A专业</el-radio>
+                  <el-radio :label="6">B专业</el-radio>
+                  <el-radio :label="9">C专业</el-radio>
+                  <el-radio :label="12">D专业</el-radio>
+                  <el-radio :label="15">E专业</el-radio>
+                </el-radio-group>
+              </div>
+              <div id="fillter-right"><i class="el-icon-circle-close" onclick="SentenceV.method.closeBOX()"></i></div>
+            </div>
+            <div class="Cluster-down">
+              <div id="studentGaugeContainer" style="position:relative"></div>
+            </div>
+          </div>
+        </div>
+        <!-- 详细视图 -->
+        <div class="DetailView">
+          <div class="DetailTitle">
+            <div class="rv-toolbar">
+              <div class="viewName2">Detail View</div>
+            </div>
+          </div>
+          <div class="Detailbody">
+            <div class="Teacher">
+              <svg class="TEmo"></svg>
+            </div>
+            <div class="Text" style="margin-top:1%">
+              <p class="Content" style="text-align:left;text-indent: 2em;line-height:25px">
+                <a style="color:#9370DB">What</a> can we get from the results? It can be seen <a
+                  style="color:#5CACEE">that</a> when the structure
+                pointer variable is used as a
+                <a style="color:#CFCFCF">function parameter</a>, the change
+                of the formal
+                parameters in the function will affect the value of the actual parameters, that <a
+                  style="color:#EE6363">is to say</a>, they are passed in two directions. <a
+                  style="color:#EE6363">Please pay
+                  attention
+                  to</a> this!
+
+                <!-- By comparing the two <a style="color:#FFD700">results</a>, we find an <a style="color:#FFD700">interesting phenomenon</a> that when using nested queries, the results of the inner layer queries
+                will
+                <a style="color:#5CACEE">affect</a> the <a style="color:#5CACEE">outer</a> layer
+                results. In addition, <i style="color:#EE6363">any</i>, <i style="color:#EE6363">all</i>,
+                <i style="color:#EE6363">in</i> and other operations are usually used <a style="color:#FFD700">together</a> in <a style="color:#CFCFCF">multiple value</a> nested queries -->
+                <!-- Now, <a style="color:#EE6363">please</a> think about <a style="color:#9370DB">when</a> the <i>IN subquery</i> <a style="color:#EE6363">cannot</a> replace the <i>OR expression</i> in the
+                <i>WHERE</i> clause of the <a style="color:#CFCFCF">SQL</a> <a style="color:#FFD700">statement</a><a style="color:#EE6363">?</a> -->
+              </p>
+            </div>
+            <div class="Stu-up">
+              <svg class="YYaw"></svg>
+            </div>
+            <div class="Stu-mid">
+              <svg class="clickEvent"></svg>
+            </div>
+            <div class="Stu-down">
+              <svg class="XPitch"></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 视频回放视图 -->
+      <div class="VideoView">
+        <div class="VideoTitle">
+          <div class="rv-toolbar">
+            <div class="viewName">Playback View</div>
+          </div>
+        </div>
+        <div class="Videobody">
+          <div id="videomain">
+            <!-- <svg class="GlyphList"></svg> -->
+          </div>
+          <div class="slide">
+            <svg class="slidemain"></svg>
+          </div>
+          <div class="Shot">
+            <div class="pic1">
+              <img src="../static/data/image/1.png" style="width:100%;height:100%;" />
+            </div>
+            <div class="pic2">
+              <img src="../static//data/image/2.png" style="width:100%;height:100%;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"
+    integrity="sha512-HjKxWye8lJGPu5q1u/ZYkHlJrJdm6KGr89E6tOrXeKm1mItb1xusPU8QPcKVhP8F9LjpZT7vsu1Fa+dQywP4eg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <!-- <script type="text/javascript" async="async" src="../static/js/levelV.js"></script> -->
+  <script type="module" async="async" src="../static/js/levelV.js"></script>
+  <script src="//static.redsift.io/reusable/d3-rs-lines/latest/d3-rs-lines.umd-es2015.min.js"></script>
+  <script type="module" async="async" src="../static/js/line.js"></script>
+  <script type="module">
+    import { lvdata } from '../static/data/LVData/LV.js'
+    import { DNAHelix } from '../static/js/SentenceV.js'
+    import { DetailMethod } from '../static/js/Detail.js'
+    import { VideoMethod } from '../static/js/playback.js'
+    import { draw_legend } from '../static/js/GlyphList.js'
+    DNAHelix()
+    DetailMethod()
+    VideoMethod()
+    draw_legend()
+
+    // 实例化vue对象
+    new Vue({
+      el: '#topselect',
+      data: {
+        options: [{
+          value: 'Diversity',
+          label: 'Emotion Diversity'
+        }, {
+          value: 'Coherence',
+          label: 'Emotion Coherence'
+        }, {
+          value: 'Angry',
+          label: 'Angry'
+        }, {
+          value: 'Interaction',
+          label: 'Student Interaction'
+        }, {
+          value: 'Backword',
+          label: 'Seek Backword'
+        }],
+        value: '',
+      },
+
+      methods: {
+        selectFilter(value) {
+          console.log(value)
+        }
+      }
+    })
+    new Vue({
+      el: '#selectdown',
+      data: {
+        options: [{
+          value: 'Cprogramming',
+          label: 'Fundamentals of computer programming'
+        }, {
+          value: 'Database',
+          label: 'Database Basis'
+        }],
+        value: '',
+      },
+
+      methods: {
+        selectFilter(value) {
+          console.log(value)
+        }
+      }
+    })
+    new Vue({
+      el: '#selectdown1',
+      data: {
+        options: [{
+          value: 'Degree',
+          label: 'X: Learning stag'
+        }, {
+          value: 'Stage',
+          label: 'Y: Degree of difficulty'
+        }],
+        value: '',
+      },
+
+      methods: {
+        selectFilter(value) {
+          console.log(value)
+        }
+      }
+    })
+    new Vue({
+      el: '#xyselect',
+      data: {
+        options: [{
+          value: 'Simple',
+          label: 'easy'
+        }, {
+          value: 'Secondary',
+          label: 'medium'
+        }, {
+          value: 'Hard',
+          label: 'hard'
+        }],
+        value: '',
+      },
+
+      methods: {
+        selectFilter(value) {
+          console.log(value)
+        }
+      }
+    })
+    new Vue({
+      el: '#xyselect2',
+      data: {
+        options: [{
+          value: 'Start',
+          label: 'Initial stage'
+        }, {
+          value: 'Interim',
+          label: 'MIdterm'
+        }, {
+          value: 'Closing',
+          label: 'Final stage'
+        }],
+        value: '',
+      },
+
+      methods: {
+        selectFilter(value) {
+          console.log(value)
+        }
+      }
+    })
+    new Vue({
+      el: '#xyselect1',
+      data: {
+        input: '',
+        num: 1
+      },
+    })
+    new Vue({
+      el: '#xyselect3',
+      data: {
+        input: ''
+      },
+      methods: {
+        handleChange(value) {
+          console.log(value);
+        }
+      }
+    })
+    new Vue({
+      el: '#cup-left',
+      data: {
+        radio: 3
+      },
+      methods: {
+        XSelect(value) {
+          console.log(value)
+        }
+      }
+    })
+    new Vue({
+      el: '#fillter-left',
+      data: {
+        radio: 3
+      },
+      methods: {
+        XSelect(value) {
+          console.log(value)
+        }
+      }
+    })
+
+
+  </script>
+
+  <script>
+    const levelV = {}  //level view
+    levelV.method = {}
+    levelV.method.closeBOX = function () {
+      console.log("点击了关闭")
+      d3.select('.CircleShow')
+        .style('opacity', '0')
+        .style('z-index', '1')
+
+      d3.select('.VideoInfo')
+        .style('opacity', '1')
+        .style('z-index', '2')
+
+      //1、 
+      d3.select('.SingleShow')
+        .style('opacity', '1')
+        .style('z-index', '2')
+
+      //2、 
+      d3.select('.SingleShow1')
+        .style('opacity', '1')
+        .style('z-index', '2')
+    }
+    const SentenceV = {}
+    SentenceV.method = {}
+    SentenceV.method.closeBOX = function () {
+      d3.select('.StudentCluster')
+        .style('opacity', '0')
+        .style('z-index', '1')
+
+      d3.select('.Sentencebody')
+        .style('z-index', '2')
+
+      d3.select("#studentGaugeContainer").selectAll("svg").remove()
+    }
+  </script>
+
+</body>
+
+</html>
